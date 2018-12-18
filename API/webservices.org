@@ -1,0 +1,164 @@
+* API
+
+Aussi les attributs suivants seront utilisés:
+- libellé: label
+- date de début: begin
+- date de fin: end
+- description: description
+
+Le format utlisé sera du JSON avec l'extension HAL pour les hypermedias.
+
+** Page principale
+#+BEGIN_SRC javascript
+GET /accueil HTTP/1.1
+Host: reservation.fr
+
+HTTP/1.1 200 OK
+Content-type: application/hal+json
+
+[
+  {
+    'label': 'home',
+    _links: {
+      'self': {
+        'href': 'https://reservation.fr/1231345978788'
+      },
+     'semaine': {
+        'href': 'https://reservation.fr/1231345978787'
+      }
+      'mois': {
+        'href': 'https://reservation.fr/1231345978785'
+      }
+      'ajouter': {
+        'href': 'https://reservation.fr/1231345978782'
+      }
+      'modif': {
+        'href': 'https://reservation.fr/12313459787542'
+      }
+    }
+  },
+]
+#+END_SRC
+
+** Consulter ses rendez-vous pour la semaine
+#+BEGIN_SRC javascript
+GET /accueil/semaine HTTP/1.1
+Host: reservation.fr
+
+HTTP/1.1 200 OK
+Content-type: application/hal+json
+
+[
+  {
+    'label': 'augmentation',
+    'begin': '16/12/2019:10h00',
+    'end': '16/12/2019:10h30',
+    'description': 'Voir le directeur',
+    _links: {
+      'self': {
+        'href': 'https://reservation.fr/1231345978787'
+      },
+     'commenter': {
+        'href': 'https://reservation.fr/1231345978787'
+      }
+      'annuler': {
+        'href': 'https://reservation.fr/1231345978787'
+      }
+      'modifier': {
+        'href': 'https://reservation.fr/1231345978787'
+      }
+      'partager': {
+        'href': 'https://reservation.fr/1231345978787'
+      }
+      'réserver': {
+        'href': 'https://reservation.fr/1231345978787'
+      }
+    }
+  },
+]
+#+END_SRC
+
+** Consulter ses rendez-vous pour un mois
+#+BEGIN_SRC javascript
+GET /accueil/semaine HTTP/1.1
+Host: reservation.fr
+
+HTTP/1.1 200 OK
+Content-type: application/hal+json
+
+[
+ {
+    'label': 'augmentation',
+    'begin': '16/12/2019:10h00',
+    'end': '16/12/2019:10h30',
+    'description': 'Voir le directeur',
+    _links: {
+      'self': {
+        'href': 'https://reservation.fr/1231345978787'
+      },
+     'commenter': {
+        'href': 'https://reservation.fr/1231345978787'
+      }
+      'annuler': {
+        'href': 'https://reservation.fr/1231345978787'
+      }
+      'modifier': {
+        'href': 'https://reservation.fr/1231345978787'
+      }
+      'partager': {
+        'href': 'https://reservation.fr/1231345978787'
+      }
+      'réserver': {
+        'href': 'https://reservation.fr/1231345978787'
+      }
+    }
+  },
+  {
+    'label': 'manifestation',
+    'begin': '18/12/2019:06h00',
+    'end': '18/12/2019:18h00',
+    'description': 'Ne pas oublier le gilet',
+    _links: {
+    
+    }
+  },
+]
+      
+*** Consulter le détail d'un rendez-vous
+#+BEGIN_SRC javascript
+GET /accueil/semaine{num_rendez_vous} HTTP/1.1
+Host: reservation.fr
+
+HTTP/1.1 200 OK
+Content-type: application/hal+json
+
+...
+
+#+END_SRC
+
+** Ajouter ou modifier un nouveau rendez-vous
+#+BEGIN_SRC javascript
+POST /accueil/{semaine/mois}/ HTTP/1.1
+Host: reservation.fr
+
+#+END_SRC
+
+** Annuler un rendez-vous
+#+BEGIN_SRC javascript
+DELETE /accueil HTTP/1.1
+Host: reservation.fr
+#+END_SRC
+
+** Réserver une salle
+    - GET et/ou POST
+
+      
+
+** Annuler la réservation d'une salle
+    - GET et/ou DELETE
+
+** Modifier un rendez-vous qui est associé à une salle
+    - PUT
+
+** Partager un rendez-vous
+    - POST
