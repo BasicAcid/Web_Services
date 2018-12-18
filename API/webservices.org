@@ -9,7 +9,6 @@ Aussi les attributs suivants seront utilisés:
 Le format utlisé sera du JSON avec l'extension HAL pour les hypermedias.
 
 ** Page principale
-#+BEGIN_SRC javascript
 GET /accueil HTTP/1.1
 Host: reservation.fr
 
@@ -38,10 +37,8 @@ Content-type: application/hal+json
     }
   },
 ]
-#+END_SRC
 
 ** Consulter ses rendez-vous pour la semaine
-#+BEGIN_SRC javascript
 GET /accueil/semaine HTTP/1.1
 Host: reservation.fr
 
@@ -76,10 +73,8 @@ Content-type: application/hal+json
     }
   },
 ]
-#+END_SRC
 
 ** Consulter ses rendez-vous pour un mois
-#+BEGIN_SRC javascript
 GET /accueil/semaine HTTP/1.1
 Host: reservation.fr
 
@@ -125,8 +120,7 @@ Content-type: application/hal+json
 ]
       
 *** Consulter le détail d'un rendez-vous
-#+BEGIN_SRC javascript
-GET /accueil/semaine{num_rendez_vous} HTTP/1.1
+GET /accueil/semaine/{num_rendez_vous} HTTP/1.1
 Host: reservation.fr
 
 HTTP/1.1 200 OK
@@ -134,20 +128,14 @@ Content-type: application/hal+json
 
 ...
 
-#+END_SRC
 
 ** Ajouter ou modifier un nouveau rendez-vous
-#+BEGIN_SRC javascript
 POST /accueil/{semaine/mois}/ HTTP/1.1
 Host: reservation.fr
 
-#+END_SRC
-
 ** Annuler un rendez-vous
-#+BEGIN_SRC javascript
-DELETE /accueil HTTP/1.1
+DELETE /accueil{semaine/mois}/{num_rendez_vous}/annuler HTTP/1.1
 Host: reservation.fr
-#+END_SRC
 
 ** Réserver une salle
     - GET et/ou POST
